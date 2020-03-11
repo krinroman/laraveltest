@@ -20,7 +20,7 @@ Auth::routes();
 Route::get('/list', 'EntryController@index')->name('list');
 Route::put('/entry', 'EntryController@put');
 Route::post('/entry', 'EntryController@post');
-
+Route::delete('/entry', 'EntryController@delete');
 
 
 Route::get('/home', 'HomeController@index')->name('home');

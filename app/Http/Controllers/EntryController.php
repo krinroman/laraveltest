@@ -27,8 +27,8 @@ class EntryController extends Controller
     {
         $user_id = Auth::user()->id;
 
-        $listEntry = Entry::where('user_id', $user_id)->orderBy('id', 'desc')->get();
-        return view('list', 'user');
+        $listEntry = Entry::where('user_id', $user_id)->orderBy('id', 'asc')->get();
+        return view('list', compact('listEntry'));
     }
 
     public function post(Request $request){
@@ -41,55 +41,38 @@ class EntryController extends Controller
         $entry->user_id = $user_id;
         $entry->save();
 
-
-        $array = array(
-            '1' => 'Значение 1', 
-            '2' => 'Значение 2', 
-            '3' => 'Значение 3', 
-            '4' => 'Значение 4', 
-            '5' => 'Значение 5',
-            'value' => $request->value,
-            'status' => 'ok',
-            'id' => $entry->id 
-        );
-         
-        $json = json_encode($array);
-        return $json;
+        return "ok";
     }
 
     public function put(Request $request){
         $id = $request->id;
         $value = $request->value;
-        
+
         $user_id = Auth::user()->id;
 
-        $array = array(
-            '1' => 'Значение 1', 
-            '2' => 'Значение 2', 
-            '3' => 'Значение 3', 
-            '4' => 'Значение 4', 
-            'user_id' => $user_id,
-            'value' => $request->value,
-            'status' => 'ok'
-        );
-         
-        $json = json_encode($array);
-        return $json;
+        $entry = Entry::find($id);
+        if($entry->user_id !== $user_id){
+            return "Error: Доступ запрещен";
+        }
+        $entry->value = $value;
+        $entry->save();
+
+        return "ok";
     }
 
     public function delete(Request $request){
-        $array = array(
-            '1' => 'Значение 1', 
-            '2' => 'Значение 2', 
-            '3' => 'Значение 3', 
-            '4' => 'Значение 4', 
-            '5' => 'Значение 5',
-            'value' => $request->value,
-            'status' => 'ok'
-        );
-         
-        $json = json_encode($array);
-        return $json;
+        $id = $request->id;
+
+        $user_id = Auth::user()->id;
+
+        $entry = Entry::find($id);
+        if($entry->user_id !== $user_id){
+            return "Error: Доступ запрещен";
+        }
+        $entry->delete();
+        
+
+        return "ok";
     }
    
 }

@@ -13,3 +13,51 @@
 .active-link a{
     color: #333 !important;
 }
+
+.entry{
+    list-style-type: none;
+    display: flex;
+    height: 30px;
+    align-items: center;
+}
+
+.entry > span[name="value"]{
+    margin-left: 5px;
+}
+
+.entry > input{
+    height: 25px;
+    width: auto;
+    margin: 0 5px;
+}
+
+.entry > button[name="del_button"]{
+    color: red;
+}
+
+.show-entry-button{
+    background-color: white;
+    border: none;
+}
+
+.show-entry-button:focus{
+    outline: none;
+}
+
+.edit-entry-button{
+    height: 25px;
+    padding: 0 10px 2px 10px;
+    margin-left: 5px;
+}
+
+.show-entry > input,
+.show-entry > button[name="save_button"],
+.show-entry > button[name="close_button"]{
+    display: none;
+}
+
+.edit-entry > span[name="value"],
+.edit-entry > button[name="edit_button"],
+.edit-entry > button[name="del_button"]{
+    display: none;
+}
