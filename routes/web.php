@@ -22,5 +22,7 @@ Route::put('/entry', 'EntryController@put');
 Route::post('/entry', 'EntryController@post');
 Route::delete('/entry', 'EntryController@delete');
 
+Route::post('/image/upload', 'ImageController@upload');
+
 
 Route::get('/home', 'HomeController@index')->name('home');

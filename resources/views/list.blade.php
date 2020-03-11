@@ -6,12 +6,24 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-body">
-                        <div class="col-md-8 col-md-offset-1">
+                        <div class="col-md-9">
                             <input id="input_add" type="text" class="form-control">    
                         </div>
                         <div class="col-md-2">
                             <button id="button_add" class="btn btn-primary">Добавить</button>
                         </div>
+                        <div id="radio_box_block" class="col-md-9 sort-block">
+                            @foreach ($radioBoxList as $radioBox)
+                                <p>
+                                    @if($radioBox["checked"])
+                                        <input name="sort" type="radio" checked="true"/>
+                                    @else
+                                        <input name="sort" type="radio"/>
+                                    @endif
+                                    {{$radioBox["name"]}}
+                                </p>
+                            @endforeach  
+                        </div>   
                 </div>
             </div>
             <div class="panel panel-default">

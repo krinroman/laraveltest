@@ -22,7 +22,7 @@ document.getElementById("button_add").addEventListener('click', () => {
         response.text().then((data) => {
             console.log(data);
             if(data !== "ok"){
-                return alert("Не удалось добавить запись");
+                return alert("Не удалось добавить запись" + data);
             }
             location.reload();
         });
@@ -76,7 +76,7 @@ document.getElementById("list").addEventListener('click', (event) => {
             response.text().then((data) => {
                 console.log(data);
                 if(data !== "ok"){
-                    return alert("Не удалось изменить запись");
+                    return alert("Не удалось изменить запись" + data);
                 }
                 location.reload();
             });
@@ -104,10 +104,31 @@ document.getElementById("list").addEventListener('click', (event) => {
             response.text().then((data) => {
                 console.log(data);
                 if(data !== "ok"){
-                    return alert("Не удалось удалить запись");
+                    return alert("Не удалось удалить запись" + data);
                 }
                 document.getElementById("entry_"+id).remove();
             });
         }).catch(() => console.log('ошибка')); 
+    }
+});
+
+function getIndexCheckedRadioButton(){
+    let rad=document.getElementsByName('sort');
+    for (let i=0;i<rad.length; i++) {
+        if (rad[i].checked) {
+            return i;
+        }
+    }
+}
+
+document.getElementById("radio_box_block").addEventListener("click", function(event){
+    if(event.target.type == "radio"){
+        let querySort;
+        let indexSort = getIndexCheckedRadioButton();
+        if(indexSort >= 2) querySort="sortField=value";
+        else querySort="sortField=id";
+        if(indexSort % 2 == 0) querySort += "&sortOrder=asc";
+        else querySort += "&sortOrder=desc"
+        location.replace("http://localhost:8000/list?"+querySort);
     }
 });

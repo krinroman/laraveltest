@@ -52,7 +52,14 @@
                                 <li><a href="{{ route('login') }}">Вход</a></li>
                                 <li><a href="{{ route('register') }}">Регистрация</a></li>
                             @else
-                                <li class="dropdown">
+                                <li class="dropdown header-user-block">
+                                    <div class="img-avatar-header">
+                                        @if(is_file('storage/images/avatar_user_'.Auth::user()->id.'.jpg'))
+                                            <img class="img-fluid" name="img_user" id="header_user_img" src='storage/images/avatar_user_{{ Auth::user()->id }}.jpg' />
+                                        @else
+                                            <img class="img-fluid" name="img_user" id="header_user_img" src="storage/images/default.jpg" />
+                                        @endif
+                                    </div>
                                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                         {{ Auth::user()->name }} <span class="caret"></span>
                                     </a>
@@ -83,6 +90,6 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
-    @yield('scripts');
+    @yield('scripts')
 </body>
 </html>
