@@ -1,0 +1,15 @@
+.header-wrapper{
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.active-link{
+    background-color: #dfeaee;
+    border-bottom: 1px solid #95aab4;
+    margin-bottom: -1px;
+}
+
+.active-link a{
+    color: #333 !important;
+}
